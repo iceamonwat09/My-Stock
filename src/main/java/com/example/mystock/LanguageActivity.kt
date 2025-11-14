@@ -66,7 +66,7 @@ class LanguageActivity : AppCompatActivity() {
     }
 
     private fun navigateToMain() {
-        val intent = Intent(this, MainActivityNew::class.java)
+        val intent = Intent(this, MainActivityInventory::class.java)
         startActivity(intent)
         finish()
     }
