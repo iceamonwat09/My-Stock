@@ -164,7 +164,7 @@ object CsvHelper {
     /**
      * Escape CSV field (handle commas and quotes)
      */
-    private fun escapeField(field: String): String {
+    fun escapeField(field: String): String {
         return if (field.contains(",") || field.contains("\"") || field.contains("\n")) {
             "\"${field.replace("\"", "\"\"")}\""
         } else {
@@ -175,7 +175,7 @@ object CsvHelper {
     /**
      * Parse a CSV line considering quoted fields
      */
-    private fun parseCsvLine(line: String): List<String> {
+    fun parseCsvLine(line: String): List<String> {
         val result = mutableListOf<String>()
         var current = StringBuilder()
         var inQuotes = false
