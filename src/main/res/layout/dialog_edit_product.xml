@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Product Name (Read-only) -->
+        <TextView
+            android:id="@+id/textProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ชื่อสินค้า"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#2196F3"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Current Stock (Read-only) -->
+        <TextView
+            android:id="@+id/textCurrentStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="สต๊อกปัจจุบัน: 100 ชิ้น"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#4CAF50"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Image Preview -->
+        <ImageView
+            android:id="@+id/imagePreviewEdit"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Category -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="หมวดหมู่"
+            android:layout_marginBottom="8dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Location -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="สถานที่"
+            android:layout_marginBottom="8dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Price -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ราคาต่อหน่วย"
+            android:layout_marginBottom="8dp"
+            app:boxBackgroundMode="outline"
+            app:prefixText="฿">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Min Stock -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="จำนวนสต๊อกขั้นต่ำ"
+            app:boxBackgroundMode="outline"
+            app:helperText="ค่าเริ่มต้น: 0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editMinStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="หมายเหตุ: การแก้ไขสต๊อกต้องใช้ Stock IN/OUT ในหน้าหลัก"
+            android:textSize="12sp"
+            android:textColor="#F44336"
+            android:textStyle="italic"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>

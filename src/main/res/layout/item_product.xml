@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/imageProduct"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:contentDescription="Product Image" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Product Name -->
+            <TextView
+                android:id="@+id/textProductName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ชื่อสินค้า"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#212121"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Category and Location -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/textCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="หมวดหมู่"
+                    android:textSize="14sp"
+                    android:textColor="#2196F3"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/textLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="📍 สถานที่"
+                    android:textSize="14sp"
+                    android:textColor="#FF9800" />
+            </LinearLayout>
+
+            <!-- Stock Info -->
+            <TextView
+                android:id="@+id/textCurrentStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="สต๊อก: 100 ชิ้น"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#4CAF50"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Price and Value Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/textPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="฿100/หน่วย"
+                    android:textSize="14sp"
+                    android:textColor="#757575" />
+
+                <TextView
+                    android:id="@+id/textTotalValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="มูลค่า: ฿10,000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50" />
+            </LinearLayout>
+
+            <!-- Min Stock -->
+            <TextView
+                android:id="@+id/textMinStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ขั้นต่ำ: 10"
+                android:textSize="12sp"
+                android:textColor="#757575"
+                android:layout_marginBottom="12dp"
+                android:visibility="gone" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginVertical="8dp" />
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <Button
+                    android:id="@+id/buttonEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:text="✏️"
+                    android:textSize="16sp"
+                    android:backgroundTint="#2196F3"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+                <Button
+                    android:id="@+id/buttonHistory"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    android:text="📜"
+                    android:textSize="16sp"
+                    android:backgroundTint="#FF9800"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+                <Button
+                    android:id="@+id/buttonDelete"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:text="🗑️"
+                    android:textSize="16sp"
+                    android:backgroundTint="#F44336"
+                    style="@style/Widget.MaterialComponents.Button" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

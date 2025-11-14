@@ -44,6 +44,13 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
+        <!-- Main Activity Inventory (ACTIVE - Full Inventory Management) -->
+        <activity
+            android:name=".MainActivityInventory"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
         <!-- QR Scanner Activity -->
         <activity
             android:name=".QRScannerActivity"
@@ -62,6 +69,20 @@
         <!-- View Data Activity New (Updated with edit/delete) -->
         <activity
             android:name=".ViewDataActivityNew"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+
+        <!-- View Data Activity Inventory (ACTIVE - With Tabs) -->
+        <activity
+            android:name=".ViewDataActivityInventory"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+
+        <!-- Transaction History Activity -->
+        <activity
+            android:name=".TransactionHistoryActivity"
             android:screenOrientation="portrait"
             android:exported="false"
             tools:ignore="LockedOrientationActivity" />

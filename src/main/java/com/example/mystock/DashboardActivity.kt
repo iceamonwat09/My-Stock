@@ -14,7 +14,8 @@ import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
 
-    private lateinit var csvFile: File
+    private lateinit var productsFile: File
+    private lateinit var transactionsFile: File
     private lateinit var textTotalItems: TextView
     private lateinit var textTotalValue: TextView
     private lateinit var textLowStockCount: TextView
@@ -26,9 +27,10 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        // Get CSV file
+        // Get CSV files
         val myFolder = getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)
-        csvFile = File(myFolder, "my_data.csv")
+        productsFile = File(myFolder, "products.csv")
+        transactionsFile = File(myFolder, "transactions.csv")
 
         // Initialize views
         textTotalItems = findViewById(R.id.textTotalItems)
@@ -51,7 +53,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.buttonViewAllData).setOnClickListener {
-            startActivity(Intent(this, ViewDataActivity::class.java))
+            startActivity(Intent(this, ViewDataActivityInventory::class.java))
         }
 
         findViewById<Button>(R.id.buttonRefresh).setOnClickListener {
@@ -66,8 +68,8 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun loadDashboard() {
         try {
-            val rows = CsvHelper.loadFromCsv(csvFile)
-            val stats = CsvHelper.calculateStatistics(rows)
+            val products = ProductManager.loadProducts(productsFile)
+            val stats = ProductManager.calculateStatistics(productsFile)
 
             // Update summary cards
             textTotalItems.text = stats.totalItems.toString()
@@ -78,20 +80,20 @@ class DashboardActivity : AppCompatActivity() {
             textTotalValue.text = currencyFormat.format(stats.totalValue)
 
             // Show low stock items
-            if (stats.lowStockItems.isNotEmpty()) {
-                val lowStockAdapter = LowStockAdapter(stats.lowStockItems)
+            if (stats.lowStockProducts.isNotEmpty()) {
+                val lowStockAdapter = LowStockAdapter(stats.lowStockProducts)
                 recyclerLowStock.adapter = lowStockAdapter
             } else {
                 recyclerLowStock.adapter = LowStockAdapter(emptyList())
             }
 
             // Show category summary
-            val categoryData = rows.groupBy { it.category }
+            val categoryData = products.groupBy { it.category }
                 .map { (category, items) ->
                     CategorySummary(
                         category = category,
                         itemCount = items.size,
-                        totalQuantity = items.sumOf { it.quantity },
+                        totalQuantity = items.sumOf { it.currentStock },
                         totalValue = items.sumOf { it.getTotalValue() }
                     )
                 }
@@ -107,7 +109,7 @@ class DashboardActivity : AppCompatActivity() {
 }
 
 // Adapter for low stock items
-class LowStockAdapter(private val items: List<CsvRow>) : RecyclerView.Adapter<LowStockAdapter.ViewHolder>() {
+class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<LowStockAdapter.ViewHolder>() {
 
     class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val textProductName: TextView = view.findViewById(R.id.textProductName)
@@ -123,7 +125,7 @@ class LowStockAdapter(private val items: List<CsvRow>) : RecyclerView.Adapter<Lo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.textProductName.text = item.productName
-        holder.textStockLevel.text = "${item.quantity} / ${item.minStock}"
+        holder.textStockLevel.text = "${item.currentStock} / ${item.minStock}"
     }
 
     override fun getItemCount() = items.size
