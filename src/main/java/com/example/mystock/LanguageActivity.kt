@@ -1,5 +1,6 @@
 package com.example.mystock
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -12,9 +13,10 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.*
 
-class LanguageActivity : AppCompatActivity() {
+// DataStore extension - must be at top level
+private val Context.dataStore by preferencesDataStore(name = "settings")
 
-    private val androidx.appcompat.app.AppCompatActivity.dataStore by preferencesDataStore(name = "settings")
+class LanguageActivity : AppCompatActivity() {
 
     companion object {
         val LANGUAGE_KEY = stringPreferencesKey("language")

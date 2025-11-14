@@ -115,10 +115,9 @@ class MainActivityInventory : AppCompatActivity() {
 
         // Check Pro version status
         lifecycleScope.launch {
-            billingManager.isProVersionFlow.collect { isPro ->
-                buttonUpgradePro.visibility = if (isPro) View.GONE else View.VISIBLE
-                updateProductCount()
-            }
+            val isPro = billingManager.isProVersionFlow.first()
+            buttonUpgradePro.visibility = if (isPro) View.GONE else View.VISIBLE
+            updateProductCount()
         }
     }
 
@@ -236,7 +235,7 @@ class MainActivityInventory : AppCompatActivity() {
         }
 
         buttonViewData.setOnClickListener {
-            val intent = Intent(this, ViewDataActivityNew::class.java)
+            val intent = Intent(this, ViewDataActivityInventory::class.java)
             startActivity(intent)
         }
 
@@ -569,12 +568,11 @@ class MainActivityInventory : AppCompatActivity() {
     private fun updateProductCount() {
         lifecycleScope.launch {
             val productCount = ProductManager.loadProducts(productsFile).size
-            billingManager.isProVersionFlow.collect { isPro ->
-                if (isPro) {
-                    textViewRowCount.text = "สินค้าทั้งหมด: $productCount รายการ (ไม่จำกัด)"
-                } else {
-                    textViewRowCount.text = "สินค้า: $productCount / 50 รายการ"
-                }
+            val isPro = billingManager.isProVersionFlow.first()
+            if (isPro) {
+                textViewRowCount.text = "สินค้าทั้งหมด: $productCount รายการ (ไม่จำกัด)"
+            } else {
+                textViewRowCount.text = "สินค้า: $productCount / 50 รายการ"
             }
         }
     }
