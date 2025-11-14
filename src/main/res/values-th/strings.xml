@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyStock</string>
+    <string name="app_name">📦 MyStock</string>
 
     <!-- Language Selection -->
     <string name="select_language">Select Language / เลือกภาษา</string>
