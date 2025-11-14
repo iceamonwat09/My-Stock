@@ -11,6 +11,9 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.*
+// Import DataStore extension and keys
+import com.example.mystock.dataStore
+import com.example.mystock.DataStoreKeys
 
 class LanguageActivity : AppCompatActivity() {
 

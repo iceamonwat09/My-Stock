@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import java.util.*
+// Import DataStore extension and keys
+import com.example.mystock.dataStore
+import com.example.mystock.DataStoreKeys
 
 /**
  * BaseActivity - Ensures all activities maintain the correct locale
