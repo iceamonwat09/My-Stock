@@ -2,11 +2,7 @@ package com.example.mystock
 
 import android.app.Activity
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.preferencesDataStore
 import com.android.billingclient.api.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,9 +13,6 @@ import kotlinx.coroutines.launch
 
 class BillingManager(private val context: Context) {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-    private val PRO_VERSION_KEY = booleanPreferencesKey("pro_version")
-
     companion object {
         const val PRODUCT_ID_PRO = "pro_version_unlimited"
         const val FREE_ROW_LIMIT = 50
@@ -28,7 +21,7 @@ class BillingManager(private val context: Context) {
     private lateinit var billingClient: BillingClient
 
     val isProVersionFlow: Flow<Boolean> = context.dataStore.data.map { preferences ->
-        preferences[PRO_VERSION_KEY] ?: false
+        preferences[DataStoreKeys.PRO_VERSION_KEY] ?: false
     }
 
     fun initialize() {
@@ -92,7 +85,7 @@ class BillingManager(private val context: Context) {
     private fun saveProStatus(isPro: Boolean) {
         CoroutineScope(Dispatchers.IO).launch {
             context.dataStore.edit { preferences ->
-                preferences[PRO_VERSION_KEY] = isPro
+                preferences[DataStoreKeys.PRO_VERSION_KEY] = isPro
             }
         }
     }
