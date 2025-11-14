@@ -16,7 +16,7 @@ import com.google.mlkit.vision.common.InputImage
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class QRScannerActivity : AppCompatActivity() {
+class QRScannerActivity : BaseActivity() {
 
     private lateinit var previewView: PreviewView
     private lateinit var cameraExecutor: ExecutorService

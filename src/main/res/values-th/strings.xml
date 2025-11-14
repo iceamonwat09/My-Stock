@@ -91,4 +91,30 @@
     <!-- Image -->
     <string name="no_image">ไม่มีรูปภาพ</string>
     <string name="image_attached">แนบรูปภาพแล้ว</string>
+
+    <!-- Stock In Activity -->
+    <string name="confirm_stock_in">ยืนยันรับสินค้าเข้า</string>
+    <string name="enter_product_name">กรุณากรอกชื่อสินค้า</string>
+    <string name="enter_quantity">กรุณากรอกจำนวน</string>
+    <string name="quantity_must_positive">จำนวนต้องมากกว่า 0</string>
+    <string name="stock_in_success">รับสินค้าเข้าสำเร็จ! สต๊อกใหม่:</string>
+    <string name="product_created">สร้างสินค้าใหม่สำเร็จ! สต๊อก:</string>
+    <string name="new_product">สร้างสินค้าใหม่</string>
+    <string name="total_products">สินค้าทั้งหมด</string>
+    <string name="products">สินค้า</string>
+    <string name="min_stock_helper">แจ้งเตือนเมื่อสต๊อกต่ำกว่าหรือเท่ากับค่านี้</string>
+
+    <!-- Stock Out Activity -->
+    <string name="confirm_stock_out">ยืนยันเบิกสินค้าออก</string>
+    <string name="scan_to_view_product">สแกนหรือค้นหาเพื่อดูรายละเอียดสินค้า</string>
+    <string name="select_product_first">กรุณาเลือกสินค้าก่อน</string>
+    <string name="insufficient_stock">สต๊อกไม่เพียงพอ</string>
+    <string name="requested">ต้องการเบิก</string>
+    <string name="shortage">ขาดอีก</string>
+    <string name="ok">ตกลง</string>
+    <string name="product">สินค้า</string>
+    <string name="after_stock_out">หลังเบิกออก</string>
+    <string name="stock_out_success">เบิกสินค้าออกสำเร็จ! สต๊อกเหลือ:</string>
+    <string name="quantity_to_withdraw">จำนวนที่ต้องการเบิก</string>
+    <string name="product_image">รูปภาพสินค้า</string>
 </resources>

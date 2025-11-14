@@ -15,7 +15,7 @@ import java.io.File
  * Tab 1: Products (สินค้าทั้งหมด + สต๊อกปัจจุบัน)
  * Tab 2: Transactions (ประวัติการเคลื่อนไหว)
  */
-class ViewDataActivityInventory : AppCompatActivity() {
+class ViewDataActivityInventory : BaseActivity() {
 
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
