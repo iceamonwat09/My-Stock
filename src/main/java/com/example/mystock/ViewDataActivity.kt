@@ -102,7 +102,7 @@ class ViewDataActivity : AppCompatActivity() {
     private fun setupSpinners() {
         // Get unique users
         val users = mutableListOf("All")
-        users.addAll(allRows.map { it.user }.distinct().sorted())
+        users.addAll(allRows.map { it.category }.distinct().sorted())
         val userAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
         userAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerUser.adapter = userAdapter
@@ -181,13 +181,13 @@ class ViewDataActivity : AppCompatActivity() {
 
         filteredRows.addAll(allRows.filter { row ->
             // Search filter
-            val matchSearch = searchText.isEmpty() || 
-                row.data.lowercase().contains(searchText) ||
-                row.user.lowercase().contains(searchText) ||
+            val matchSearch = searchText.isEmpty() ||
+                row.productName.lowercase().contains(searchText) ||
+                row.category.lowercase().contains(searchText) ||
                 row.location.lowercase().contains(searchText)
 
             // User filter
-            val matchUser = selectedUser == "All" || row.user == selectedUser
+            val matchUser = selectedUser == "All" || row.category == selectedUser
 
             // Location filter
             val matchLocation = selectedLocation == "All" || row.location == selectedLocation
