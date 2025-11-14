@@ -176,8 +176,8 @@ class StockInActivity : BaseActivity() {
                 val text = s.toString()
                 val product = ProductManager.findProduct(productsFile, text)
                 if (product != null) {
-                    selectedProduct = product
-                    showCurrentStock(product)
+                    // Load full product data including all fields
+                    loadProductData(text)
                 } else {
                     selectedProduct = null
                     hideCurrentStock()
