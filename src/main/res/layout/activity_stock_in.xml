@@ -135,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -153,7 +154,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -180,7 +182,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -199,7 +202,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:maxLines="1" />
+                    android:maxLines="1"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -220,7 +224,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:maxLines="1"
-                android:text="0" />
+                android:text="0"
+                android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Notes -->
@@ -238,7 +243,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:maxLines="3" />
+                android:maxLines="3"
+                android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Confirm Button -->

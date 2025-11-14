@@ -2,27 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="12dp"
     android:background="?attr/selectableItemBackground">
 
     <TextView
         android:id="@+id/textProductName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="Product Name"
-        android:textSize="16sp"
+        android:textSize="17sp"
         android:textColor="#212121"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
 
-    <TextView
-        android:id="@+id/textStockLevel"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="5 / 10"
-        android:textSize="14sp"
-        android:textColor="#F44336"
-        android:textStyle="bold" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="สต๊อกปัจจุบัน: "
+            android:textSize="14sp"
+            android:textColor="#757575" />
+
+        <TextView
+            android:id="@+id/textStockLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 / 10"
+            android:textSize="14sp"
+            android:textColor="#F44336"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </LinearLayout>

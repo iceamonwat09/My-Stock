@@ -168,6 +168,12 @@ class StockInActivity : BaseActivity() {
             editTextPrice.setText(product.pricePerUnit.toString())
             editTextMinStock.setText(product.minStock.toString())
 
+            // Lock fields for existing products - only allow quantity changes
+            editTextCategory.isEnabled = false
+            editTextLocation.isEnabled = false
+            editTextPrice.isEnabled = false
+            editTextMinStock.isEnabled = false
+
             if (product.imagePath.isNotEmpty() && File(product.imagePath).exists()) {
                 currentImagePath = product.imagePath
                 imagePreview.setImageURI(Uri.fromFile(File(product.imagePath)))
@@ -192,6 +198,11 @@ class StockInActivity : BaseActivity() {
 
     private fun hideCurrentStock() {
         layoutCurrentStock.visibility = View.GONE
+        // Enable fields for new products
+        editTextCategory.isEnabled = true
+        editTextLocation.isEnabled = true
+        editTextPrice.isEnabled = true
+        editTextMinStock.isEnabled = true
     }
 
     private fun setupButtonListeners() {
@@ -319,6 +330,11 @@ class StockInActivity : BaseActivity() {
         imagePreview.visibility = View.GONE
         selectedProduct = null
         hideCurrentStock()
+        // Re-enable all fields
+        editTextCategory.isEnabled = true
+        editTextLocation.isEnabled = true
+        editTextPrice.isEnabled = true
+        editTextMinStock.isEnabled = true
         autoCompleteProduct.requestFocus()
     }
 
