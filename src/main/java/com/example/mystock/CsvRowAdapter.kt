@@ -25,9 +25,9 @@ class CsvRowAdapter(private var rows: List<CsvRow>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val row = rows[position]
         holder.textDateTime.text = row.dateTime
-        holder.textUser.text = row.user
+        holder.textUser.text = row.category
         holder.textLocation.text = row.location
-        holder.textData.text = row.data
+        holder.textData.text = row.productName
     }
 
     override fun getItemCount() = rows.size

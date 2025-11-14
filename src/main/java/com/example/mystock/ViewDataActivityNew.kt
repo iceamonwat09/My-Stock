@@ -1,23 +1,27 @@
 package com.example.mystock
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.textfield.TextInputEditText
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 
-class ViewDataActivity : AppCompatActivity() {
+class ViewDataActivityNew : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: CsvRowAdapter
+    private lateinit var adapter: CsvRowAdapterNew
     private lateinit var editTextSearch: EditText
-    private lateinit var spinnerUser: Spinner
+    private lateinit var spinnerCategory: Spinner
     private lateinit var spinnerLocation: Spinner
     private lateinit var buttonDateFrom: Button
     private lateinit var buttonDateTo: Button
@@ -32,12 +36,12 @@ class ViewDataActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_data)
+        setContentView(R.layout.activity_view_data_new)
 
         // Initialize views
         recyclerView = findViewById(R.id.recyclerViewData)
         editTextSearch = findViewById(R.id.editTextSearch)
-        spinnerUser = findViewById(R.id.spinnerUser)
+        spinnerCategory = findViewById(R.id.spinnerCategory)
         spinnerLocation = findViewById(R.id.spinnerLocation)
         buttonDateFrom = findViewById(R.id.buttonDateFrom)
         buttonDateTo = findViewById(R.id.buttonDateTo)
@@ -46,7 +50,11 @@ class ViewDataActivity : AppCompatActivity() {
 
         // Setup RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = CsvRowAdapter(filteredRows)
+        adapter = CsvRowAdapterNew(
+            filteredRows,
+            onEdit = { row -> showEditDialog(row) },
+            onDelete = { row -> showDeleteConfirmDialog(row) }
+        )
         recyclerView.adapter = adapter
 
         // Get CSV file
@@ -67,55 +75,53 @@ class ViewDataActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadCSVData()
+    }
+
     private fun loadCSVData() {
         allRows.clear()
 
         if (!csvFile.exists()) {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show()
             return
         }
 
         try {
-            csvFile.readLines().drop(1).forEach { line ->
-                val parts = line.split(",")
-                if (parts.size >= 4) {
-                    val dateTime = parts[0].trim()
-                    val user = parts[1].trim()
-                    val location = parts[2].trim()
-                    val data = parts.getOrNull(3)?.trim()?.removeSurrounding("\"") ?: ""
-                    
-                    allRows.add(CsvRow(dateTime, user, location, data))
-                }
-            }
+            allRows.addAll(CsvHelper.loadFromCsv(csvFile))
 
             filteredRows.clear()
             filteredRows.addAll(allRows)
             adapter.updateData(filteredRows)
             updateTotal()
 
+            // Refresh spinners
+            setupSpinners()
+
         } catch (e: Exception) {
             e.printStackTrace()
-            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${getString(R.string.error)}: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setupSpinners() {
-        // Get unique users
-        val users = mutableListOf("All")
-        users.addAll(allRows.map { it.category }.distinct().sorted())
-        val userAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, users)
-        userAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerUser.adapter = userAdapter
+        // Get unique categories
+        val categories = mutableListOf(getString(R.string.all))
+        categories.addAll(allRows.map { it.category }.distinct().sorted())
+        val categoryAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categories)
+        categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCategory.adapter = categoryAdapter
 
         // Get unique locations
-        val locations = mutableListOf("All")
+        val locations = mutableListOf(getString(R.string.all))
         locations.addAll(allRows.map { it.location }.distinct().sorted())
         val locationAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, locations)
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerLocation.adapter = locationAdapter
 
         // Filter on selection
-        spinnerUser.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinnerCategory.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 applyFilters()
             }
@@ -138,7 +144,7 @@ class ViewDataActivity : AppCompatActivity() {
                 this,
                 { _, year, month, day ->
                     dateFrom = String.format("%04d-%02d-%02d", year, month + 1, day)
-                    buttonDateFrom.text = "From: $dateFrom"
+                    buttonDateFrom.text = "${getString(R.string.start_date)}: $dateFrom"
                     applyFilters()
                 },
                 calendar.get(Calendar.YEAR),
@@ -152,7 +158,7 @@ class ViewDataActivity : AppCompatActivity() {
                 this,
                 { _, year, month, day ->
                     dateTo = String.format("%04d-%02d-%02d", year, month + 1, day)
-                    buttonDateTo.text = "To: $dateTo"
+                    buttonDateTo.text = "${getString(R.string.end_date)}: $dateTo"
                     applyFilters()
                 },
                 calendar.get(Calendar.YEAR),
@@ -176,7 +182,7 @@ class ViewDataActivity : AppCompatActivity() {
         filteredRows.clear()
 
         val searchText = editTextSearch.text.toString().lowercase()
-        val selectedUser = spinnerUser.selectedItem?.toString()
+        val selectedCategory = spinnerCategory.selectedItem?.toString()
         val selectedLocation = spinnerLocation.selectedItem?.toString()
 
         filteredRows.addAll(allRows.filter { row ->
@@ -186,11 +192,11 @@ class ViewDataActivity : AppCompatActivity() {
                 row.category.lowercase().contains(searchText) ||
                 row.location.lowercase().contains(searchText)
 
-            // User filter
-            val matchUser = selectedUser == "All" || row.category == selectedUser
+            // Category filter
+            val matchCategory = selectedCategory == getString(R.string.all) || row.category == selectedCategory
 
             // Location filter
-            val matchLocation = selectedLocation == "All" || row.location == selectedLocation
+            val matchLocation = selectedLocation == getString(R.string.all) || row.location == selectedLocation
 
             // Date filter
             val matchDate = if (dateFrom != null || dateTo != null) {
@@ -202,7 +208,7 @@ class ViewDataActivity : AppCompatActivity() {
                 true
             }
 
-            matchSearch && matchUser && matchLocation && matchDate
+            matchSearch && matchCategory && matchLocation && matchDate
         })
 
         adapter.updateData(filteredRows)
@@ -211,13 +217,13 @@ class ViewDataActivity : AppCompatActivity() {
 
     private fun clearFilters() {
         editTextSearch.text.clear()
-        spinnerUser.setSelection(0)
+        spinnerCategory.setSelection(0)
         spinnerLocation.setSelection(0)
         dateFrom = null
         dateTo = null
-        buttonDateFrom.text = "START DATE"
-        buttonDateTo.text = "END DATE"
-        
+        buttonDateFrom.text = getString(R.string.start_date)
+        buttonDateTo.text = getString(R.string.end_date)
+
         filteredRows.clear()
         filteredRows.addAll(allRows)
         adapter.updateData(filteredRows)
@@ -225,6 +231,74 @@ class ViewDataActivity : AppCompatActivity() {
     }
 
     private fun updateTotal() {
-        textViewTotal.text = "Showing  ${filteredRows.size} of  ${allRows.size} rows"
+        textViewTotal.text = getString(R.string.showing_rows, filteredRows.size, allRows.size)
+    }
+
+    private fun showEditDialog(row: CsvRow) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_edit_row, null)
+
+        val editProductName = dialogView.findViewById<TextInputEditText>(R.id.editProductName)
+        val editCategory = dialogView.findViewById<TextInputEditText>(R.id.editCategory)
+        val editLocation = dialogView.findViewById<TextInputEditText>(R.id.editLocation)
+        val editQuantity = dialogView.findViewById<TextInputEditText>(R.id.editQuantity)
+        val editPrice = dialogView.findViewById<TextInputEditText>(R.id.editPrice)
+        val editMinStock = dialogView.findViewById<TextInputEditText>(R.id.editMinStock)
+        val imagePreview = dialogView.findViewById<ImageView>(R.id.imagePreviewEdit)
+
+        // Fill current values
+        editProductName.setText(row.productName)
+        editCategory.setText(row.category)
+        editLocation.setText(row.location)
+        editQuantity.setText(row.quantity.toString())
+        editPrice.setText(row.pricePerUnit.toString())
+        editMinStock.setText(row.minStock.toString())
+
+        // Show image if exists
+        if (row.imagePath.isNotEmpty() && File(row.imagePath).exists()) {
+            imagePreview.setImageURI(Uri.fromFile(File(row.imagePath)))
+            imagePreview.visibility = View.VISIBLE
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.edit))
+            .setView(dialogView)
+            .setPositiveButton(getString(R.string.save)) { _, _ ->
+                // Update row with new values
+                val updatedRow = row.copy(
+                    productName = editProductName.text.toString(),
+                    category = editCategory.text.toString(),
+                    location = editLocation.text.toString(),
+                    quantity = editQuantity.text.toString().toIntOrNull() ?: row.quantity,
+                    pricePerUnit = editPrice.text.toString().toDoubleOrNull() ?: row.pricePerUnit,
+                    minStock = editMinStock.text.toString().toIntOrNull() ?: row.minStock
+                )
+
+                try {
+                    CsvHelper.updateRow(csvFile, row, updatedRow)
+                    loadCSVData()
+                    Toast.makeText(this, getString(R.string.save_success), Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "${getString(R.string.error)}: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun showDeleteConfirmDialog(row: CsvRow) {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.delete))
+            .setMessage(getString(R.string.delete_confirm))
+            .setPositiveButton(getString(R.string.confirm)) { _, _ ->
+                try {
+                    CsvHelper.deleteRow(csvFile, row)
+                    loadCSVData()
+                    Toast.makeText(this, getString(R.string.delete_success), Toast.LENGTH_SHORT).show()
+                } catch (e: Exception) {
+                    Toast.makeText(this, "${getString(R.string.error)}: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
     }
 }

@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">MyStock</string>
+
+    <!-- Language Selection -->
+    <string name="select_language">Select Language / เลือกภาษา</string>
+    <string name="language_english">English</string>
+    <string name="language_thai">ภาษาไทย</string>
+
+    <!-- Main Activity -->
+    <string name="main_title">คลังสินค้า MyStock</string>
+    <string name="saved_rows">บันทึกแล้ว: %1$d / %2$d รายการ</string>
+    <string name="saved_rows_unlimited">บันทึกแล้ว: %1$d รายการ (ไม่จำกัด)</string>
+    <string name="product_name">ชื่อสินค้า</string>
+    <string name="category">หมวดหมู่</string>
+    <string name="location">สถานที่</string>
+    <string name="quantity">จำนวน</string>
+    <string name="price">ราคาต่อหน่วย</string>
+    <string name="min_stock">จำนวนสต๊อกขั้นต่ำ</string>
+    <string name="attach_image">แนบรูปภาพ</string>
+    <string name="take_photo">ถ่ายรูป</string>
+    <string name="choose_from_gallery">เลือกจากแกลเลอรี่</string>
+    <string name="scan_qr">สแกน QR / บาร์โค้ด</string>
+    <string name="save">บันทึก</string>
+    <string name="stock_in">รับสินค้าเข้า</string>
+    <string name="stock_out">เบิกสินค้าออก</string>
+    <string name="view_data">ดูข้อมูลทั้งหมด</string>
+    <string name="dashboard">แดชบอร์ด</string>
+    <string name="open_csv">เปิด CSV / แชร์</string>
+    <string name="clear_data">ล้างข้อมูลทั้งหมด</string>
+    <string name="upgrade_pro">อัปเกรดเป็นโปร (ไม่จำกัด)</string>
+
+    <!-- Dashboard -->
+    <string name="total_items">รายการทั้งหมด</string>
+    <string name="total_stock_value">มูลค่าสต๊อกรวม</string>
+    <string name="low_stock_items">สินค้าใกล้หมด</string>
+    <string name="recent_transactions">รายการล่าสุด</string>
+    <string name="stock_by_category">สต๊อกตามหมวดหมู่</string>
+    <string name="value_trend">แนวโน้มมูลค่า</string>
+
+    <!-- View Data Activity -->
+    <string name="search">ค้นหา</string>
+    <string name="filter_category">กรองตามหมวดหมู่</string>
+    <string name="filter_location">กรองตามสถานที่</string>
+    <string name="start_date">วันที่เริ่มต้น</string>
+    <string name="end_date">วันที่สิ้นสุด</string>
+    <string name="clear_filter">ล้างตัวกรอง</string>
+    <string name="showing_rows">แสดง %1$d จาก %2$d รายการ</string>
+    <string name="all">ทั้งหมด</string>
+    <string name="edit">แก้ไข</string>
+    <string name="delete">ลบ</string>
+
+    <!-- Transaction Activity -->
+    <string name="transaction_type">ประเภทรายการ</string>
+    <string name="transaction_in">รับสินค้าเข้า (เพิ่ม)</string>
+    <string name="transaction_out">เบิกสินค้าออก (ลด)</string>
+    <string name="current_stock">สต๊อกปัจจุบัน</string>
+    <string name="transaction_quantity">จำนวนที่ทำรายการ</string>
+    <string name="new_stock_level">ระดับสต๊อกใหม่</string>
+    <string name="notes">หมายเหตุ</string>
+    <string name="confirm_transaction">ยืนยันรายการ</string>
+
+    <!-- Alerts and Messages -->
+    <string name="low_stock_alert">แจ้งเตือนสต๊อกใกล้หมด</string>
+    <string name="low_stock_message">%1$s ใกล้หมดแล้ว! ปัจจุบัน: %2$d, ขั้นต่ำ: %3$d</string>
+    <string name="please_fill_required">กรุณากรอกข้อมูลที่จำเป็น</string>
+    <string name="save_success">บันทึกสำเร็จ</string>
+    <string name="delete_confirm">คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้?</string>
+    <string name="delete_success">ลบสำเร็จ</string>
+    <string name="error">ข้อผิดพลาด</string>
+    <string name="no_csv">ไม่พบไฟล์ CSV</string>
+    <string name="scan_successful">สแกนสำเร็จ</string>
+    <string name="stock_value">มูลค่าสต๊อก</string>
+    <string name="baht">฿</string>
+
+    <!-- Clear Data -->
+    <string name="confirm_clear">ยืนยันการล้างข้อมูล</string>
+    <string name="clear_data_message">จะลบไฟล์ข้อมูลทั้งหมด\nกรุณากรอกรหัส: 2025</string>
+    <string name="enter_code">กรอกรหัสยืนยัน (2025)</string>
+    <string name="confirm">ยืนยัน</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="invalid_code">รหัสไม่ถูกต้อง</string>
+    <string name="data_cleared">ล้างข้อมูลสำเร็จ</string>
+    <string name="cannot_clear">ไม่สามารถล้างข้อมูลได้</string>
+    <string name="no_files">ไม่มีไฟล์ที่ต้องล้าง</string>
+
+    <!-- Upgrade Pro -->
+    <string name="limit_reached">ถึงขีดจำกัดแล้ว</string>
+    <string name="upgrade_message">เวอร์ชันฟรีสามารถบันทึกได้สูงสุด 50 รายการ\n\nอัปเกรดเป็นเวอร์ชันโปรเพื่อ:\n• บันทึกได้ไม่จำกัด\n• รองรับการใช้งานระยะยาว\n• สนับสนุนนักพัฒนา</string>
+    <string name="upgrade_button">อัปเกรดโปร (฿99)</string>
+
+    <!-- Image -->
+    <string name="no_image">ไม่มีรูปภาพ</string>
+    <string name="image_attached">แนบรูปภาพแล้ว</string>
+</resources>
