@@ -5,22 +5,16 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
-import android.widget.*
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.io.File
-import java.io.IOException
-import java.text.NumberFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * MainActivity - Professional Inventory Management
@@ -211,7 +205,6 @@ class MainActivityInventory : BaseActivity() {
 
         if (success) {
             updateProductCount()
-            clearForm()
             Toast.makeText(this, getString(R.string.data_cleared), Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, getString(R.string.cannot_clear), Toast.LENGTH_SHORT).show()
