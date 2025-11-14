@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stock_in"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/textViewProductCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Products: 0 / 50"
+            android:textSize="13sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Product Selection -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_name"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#5C6BC0"
+            app:hintTextColor="#5C6BC0">
+
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
+                android:completionThreshold="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Current Stock Display -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/layoutCurrentStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#ECEFF1"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/textCurrentStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Current Stock: 100"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#37474F"
+                android:padding="14dp"
+                android:gravity="center" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Scan Button -->
+        <Button
+            android:id="@+id/buttonScan"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/scan_qr"
+            android:textSize="15sp"
+            android:backgroundTint="#5C6BC0"
+            app:icon="@android:drawable/ic_menu_camera"
+            app:iconGravity="textStart"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Image Preview -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:contentDescription="@string/attach_image" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Attach Image Button -->
+        <Button
+            android:id="@+id/buttonAttachImage"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/attach_image"
+            android:textSize="14sp"
+            android:backgroundTint="#78909C"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Category and Location -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/category"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#5C6BC0"
+                app:hintTextColor="#5C6BC0">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="@string/location"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#5C6BC0"
+                app:hintTextColor="#5C6BC0">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Quantity and Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/quantity"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#5C6BC0"
+                app:hintTextColor="#5C6BC0">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="@string/price"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#5C6BC0"
+                app:hintTextColor="#5C6BC0"
+                app:prefixText="@string/baht">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Min Stock Level -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/min_stock"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#5C6BC0"
+            app:hintTextColor="#5C6BC0"
+            app:helperText="@string/min_stock_helper">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextMinStock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:text="0" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Notes -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/notes"
+            android:layout_marginBottom="24dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#5C6BC0"
+            app:hintTextColor="#5C6BC0">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:maxLines="3" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Confirm Button -->
+        <Button
+            android:id="@+id/buttonConfirmStockIn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/confirm_stock_in"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#5C6BC0" />
+
+    </LinearLayout>
+
+</ScrollView>

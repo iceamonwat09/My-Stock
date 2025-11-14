@@ -13,7 +13,7 @@ import java.util.*
 /**
  * TransactionHistoryActivity - แสดงประวัติการเคลื่อนไหวของสินค้าแต่ละรายการ
  */
-class TransactionHistoryActivity : AppCompatActivity() {
+class TransactionHistoryActivity : BaseActivity() {
 
     private lateinit var productsFile: File
     private lateinit var transactionsFile: File

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Header -->
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textViewProductCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Products: 0 / 50"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Main Operations -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stock Operations"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#616161"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <Button
+                    android:id="@+id/buttonStockIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:text="@string/stock_in"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#5C6BC0"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/buttonStockOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:text="@string/stock_out"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#E57373" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Reports and Data -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reports &amp; Data"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#616161"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <Button
+                    android:id="@+id/buttonDashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/dashboard"
+                    android:textSize="15sp"
+                    android:backgroundTint="#78909C"
+                    android:layout_marginBottom="8dp" />
+
+                <Button
+                    android:id="@+id/buttonViewData"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="@string/view_data"
+                    android:textSize="15sp"
+                    android:backgroundTint="#78909C" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- System Functions -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="System"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#616161"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/buttonOpenFile"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/open_csv"
+            android:textSize="14sp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:textColor="#757575"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/buttonClearData"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="@string/clear_data"
+            android:textSize="14sp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:textColor="#E57373"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Pro Version -->
+        <Button
+            android:id="@+id/buttonUpgradePro"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="@string/upgrade_pro"
+            android:textSize="15sp"
+            android:backgroundTint="#FFB74D"
+            android:textColor="#424242"
+            android:visibility="visible"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</ScrollView>

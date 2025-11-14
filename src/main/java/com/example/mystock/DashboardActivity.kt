@@ -12,7 +12,7 @@ import java.io.File
 import java.text.NumberFormat
 import java.util.*
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity() {
 
     private lateinit var productsFile: File
     private lateinit var transactionsFile: File

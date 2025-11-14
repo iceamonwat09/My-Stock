@@ -91,4 +91,30 @@
     <!-- Image -->
     <string name="no_image">No Image</string>
     <string name="image_attached">Image Attached</string>
+
+    <!-- Stock In Activity -->
+    <string name="confirm_stock_in">Confirm Stock In</string>
+    <string name="enter_product_name">Please enter product name</string>
+    <string name="enter_quantity">Please enter quantity</string>
+    <string name="quantity_must_positive">Quantity must be greater than 0</string>
+    <string name="stock_in_success">Stock In successful! New stock:</string>
+    <string name="product_created">Product created successfully! Stock:</string>
+    <string name="new_product">New product created</string>
+    <string name="total_products">Total Products</string>
+    <string name="products">Products</string>
+    <string name="min_stock_helper">Alert when stock is below or equal to this value</string>
+
+    <!-- Stock Out Activity -->
+    <string name="confirm_stock_out">Confirm Stock Out</string>
+    <string name="scan_to_view_product">Scan or search to view product details</string>
+    <string name="select_product_first">Please select a product first</string>
+    <string name="insufficient_stock">Insufficient Stock</string>
+    <string name="requested">Requested</string>
+    <string name="shortage">Shortage</string>
+    <string name="ok">OK</string>
+    <string name="product">Product</string>
+    <string name="after_stock_out">After Stock Out</string>
+    <string name="stock_out_success">Stock Out successful! Remaining stock:</string>
+    <string name="quantity_to_withdraw">Quantity to Withdraw</string>
+    <string name="product_image">Product Image</string>
 </resources>
