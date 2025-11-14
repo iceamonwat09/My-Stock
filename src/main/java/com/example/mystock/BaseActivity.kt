@@ -3,53 +3,51 @@ package com.example.mystock
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
-
-// DataStore extension
-private val Context.dataStore by preferencesDataStore(name = "settings")
 
 /**
  * BaseActivity - Ensures all activities maintain the correct locale
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    companion object {
-        val LANGUAGE_KEY = stringPreferencesKey("language")
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Apply saved locale before onCreate
-        lifecycleScope.launch {
-            applySavedLocale()
-        }
         super.onCreate(savedInstanceState)
+        // Locale is already applied in attachBaseContext
     }
 
     override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(newBase?.let { updateLocale(it) })
+        // Apply saved locale before creating the activity
+        val context = newBase ?: return super.attachBaseContext(newBase)
+        val updatedContext = updateLocaleContext(context)
+        super.attachBaseContext(updatedContext)
     }
 
-    private fun updateLocale(context: Context): Context {
-        // Try to get saved language synchronously from preferences
-        // This is called before coroutines are available
-        return context
-    }
-
-    private suspend fun applySavedLocale() {
-        try {
-            val prefs = dataStore.data.first()
-            val savedLanguage = prefs[LANGUAGE_KEY]
-            if (savedLanguage != null) {
-                setAppLocale(savedLanguage)
+    private fun updateLocaleContext(context: Context): Context {
+        // Get saved language synchronously using runBlocking
+        // This is safe here because attachBaseContext is called before onCreate
+        val savedLanguage = try {
+            runBlocking {
+                val prefs = context.dataStore.data.first()
+                prefs[DataStoreKeys.LANGUAGE_KEY]
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            null
         }
+
+        if (savedLanguage != null) {
+            val locale = Locale(savedLanguage)
+            Locale.setDefault(locale)
+
+            val config = context.resources.configuration
+            config.setLocale(locale)
+
+            return context.createConfigurationContext(config)
+        }
+
+        return context
     }
 
     protected fun setAppLocale(languageCode: String) {
@@ -65,14 +63,5 @@ abstract class BaseActivity : AppCompatActivity() {
 
         // Also update base context configuration
         createConfigurationContext(config)
-    }
-
-    protected suspend fun getSavedLanguage(): String? {
-        return try {
-            val prefs = dataStore.data.first()
-            prefs[LANGUAGE_KEY]
-        } catch (e: Exception) {
-            null
-        }
     }
 }

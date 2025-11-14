@@ -1,30 +1,18 @@
 package com.example.mystock
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.*
 
-// DataStore extension - must be at top level
-private val Context.dataStore by preferencesDataStore(name = "settings")
-
 class LanguageActivity : AppCompatActivity() {
-
-    companion object {
-        val LANGUAGE_KEY = stringPreferencesKey("language")
-    }
 
     private lateinit var loadingLayout: View
     private lateinit var languageSelectionLayout: View
@@ -63,7 +51,7 @@ class LanguageActivity : AppCompatActivity() {
 
             // Check saved language
             val prefs = dataStore.data.first()
-            val savedLanguage = prefs[LANGUAGE_KEY]
+            val savedLanguage = prefs[DataStoreKeys.LANGUAGE_KEY]
 
             if (savedLanguage != null) {
                 // Language already set, apply and navigate
@@ -99,7 +87,7 @@ class LanguageActivity : AppCompatActivity() {
             try {
                 // Save language preference
                 dataStore.edit { prefs ->
-                    prefs[LANGUAGE_KEY] = languageCode
+                    prefs[DataStoreKeys.LANGUAGE_KEY] = languageCode
                 }
 
                 // Apply locale
