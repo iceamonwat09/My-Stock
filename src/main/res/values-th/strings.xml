@@ -103,6 +103,10 @@
     <string name="total_products">สินค้าทั้งหมด</string>
     <string name="products">สินค้า</string>
     <string name="min_stock_helper">แจ้งเตือนเมื่อสต๊อกต่ำกว่าหรือเท่ากับค่านี้</string>
+    <string name="current_product_info">ข้อมูลสินค้าปัจจุบัน</string>
+    <string name="quantity_to_add">จำนวนที่ต้องการเพิ่ม</string>
+    <string name="new_stock_will_be">สต๊อกใหม่จะเป็น</string>
+    <string name="units">ชิ้น</string>
 
     <!-- Stock Out Activity -->
     <string name="confirm_stock_out">ยืนยันเบิกสินค้าออก</string>
