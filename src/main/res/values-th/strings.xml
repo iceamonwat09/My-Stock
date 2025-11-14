@@ -7,7 +7,7 @@
     <string name="language_thai">ภาษาไทย</string>
 
     <!-- Main Activity -->
-    <string name="main_title">คลังสินค้า MyStock</string>
+    <string name="main_title">📦 คลังสินค้า MyStock</string>
     <string name="saved_rows">บันทึกแล้ว: %1$d / %2$d รายการ</string>
     <string name="saved_rows_unlimited">บันทึกแล้ว: %1$d รายการ (ไม่จำกัด)</string>
     <string name="product_name">ชื่อสินค้า</string>
@@ -16,18 +16,18 @@
     <string name="quantity">จำนวน</string>
     <string name="price">ราคาต่อหน่วย</string>
     <string name="min_stock">จำนวนสต๊อกขั้นต่ำ</string>
-    <string name="attach_image">แนบรูปภาพ</string>
+    <string name="attach_image">🖼️ แนบรูปภาพ</string>
     <string name="take_photo">ถ่ายรูป</string>
     <string name="choose_from_gallery">เลือกจากแกลเลอรี่</string>
-    <string name="scan_qr">สแกน QR / บาร์โค้ด</string>
+    <string name="scan_qr">📷 สแกน QR / บาร์โค้ด</string>
     <string name="save">บันทึก</string>
-    <string name="stock_in">รับสินค้าเข้า</string>
-    <string name="stock_out">เบิกสินค้าออก</string>
-    <string name="view_data">ดูข้อมูลทั้งหมด</string>
-    <string name="dashboard">แดชบอร์ด</string>
-    <string name="open_csv">เปิด CSV / แชร์</string>
-    <string name="clear_data">ล้างข้อมูลทั้งหมด</string>
-    <string name="upgrade_pro">อัปเกรดเป็นโปร (ไม่จำกัด)</string>
+    <string name="stock_in">➕ รับสินค้าเข้า</string>
+    <string name="stock_out">➖ เบิกสินค้าออก</string>
+    <string name="view_data">📋 ดูข้อมูลทั้งหมด</string>
+    <string name="dashboard">📊 แดชบอร์ด</string>
+    <string name="open_csv">📄 เปิด CSV / แชร์</string>
+    <string name="clear_data">🗑️ ล้างข้อมูลทั้งหมด</string>
+    <string name="upgrade_pro">🌟 อัปเกรดเป็นโปร (ไม่จำกัด)</string>
 
     <!-- Dashboard -->
     <string name="total_items">รายการทั้งหมด</string>

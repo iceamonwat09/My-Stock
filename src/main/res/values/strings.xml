@@ -7,7 +7,7 @@
     <string name="language_thai">ภาษาไทย</string>
 
     <!-- Main Activity -->
-    <string name="main_title">MyStock Inventory</string>
+    <string name="main_title">📦 MyStock Inventory</string>
     <string name="saved_rows">Saved: %1$d / %2$d rows</string>
     <string name="saved_rows_unlimited">Saved: %1$d rows (Unlimited)</string>
     <string name="product_name">Product Name</string>
@@ -16,18 +16,18 @@
     <string name="quantity">Quantity</string>
     <string name="price">Price per Unit</string>
     <string name="min_stock">Minimum Stock Level</string>
-    <string name="attach_image">Attach Image</string>
+    <string name="attach_image">🖼️ Attach Image</string>
     <string name="take_photo">Take Photo</string>
     <string name="choose_from_gallery">Choose from Gallery</string>
-    <string name="scan_qr">Scan QR / Barcode</string>
+    <string name="scan_qr">📷 Scan QR / Barcode</string>
     <string name="save">Save</string>
-    <string name="stock_in">Stock In</string>
-    <string name="stock_out">Stock Out</string>
-    <string name="view_data">View All Data</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="open_csv">Open CSV / Share</string>
-    <string name="clear_data">Clear All Data</string>
-    <string name="upgrade_pro">Upgrade to Pro (Unlimited)</string>
+    <string name="stock_in">➕ Stock In</string>
+    <string name="stock_out">➖ Stock Out</string>
+    <string name="view_data">📋 View All Data</string>
+    <string name="dashboard">📊 Dashboard</string>
+    <string name="open_csv">📄 Open CSV / Share</string>
+    <string name="clear_data">🗑️ Clear All Data</string>
+    <string name="upgrade_pro">🌟 Upgrade to Pro (Unlimited)</string>
 
     <!-- Dashboard -->
     <string name="total_items">Total Items</string>

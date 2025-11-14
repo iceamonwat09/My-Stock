@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📦 @string/main_title"
+            android:text="@string/main_title"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#2196F3"
@@ -222,7 +222,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
-                android:text="📷 @string/scan_qr"
+                android:text="@string/scan_qr"
                 android:textSize="14sp"
                 android:backgroundTint="#FF9800" />
 
@@ -232,7 +232,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
-                android:text="🖼️ @string/attach_image"
+                android:text="@string/attach_image"
                 android:textSize="14sp"
                 android:backgroundTint="#9C27B0" />
         </LinearLayout>
@@ -251,7 +251,7 @@
                 android:layout_height="75dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="6dp"
-                android:text="➕ @string/stock_in"
+                android:text="@string/stock_in"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="#4CAF50" />
@@ -262,7 +262,7 @@
                 android:layout_height="75dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
-                android:text="➖ @string/stock_out"
+                android:text="@string/stock_out"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="#F44336" />
@@ -280,7 +280,7 @@
             android:id="@+id/buttonDashboard"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="📊 @string/dashboard"
+            android:text="@string/dashboard"
             android:textSize="16sp"
             android:backgroundTint="#673AB7"
             android:layout_marginBottom="12dp" />
@@ -289,7 +289,7 @@
             android:id="@+id/buttonViewData"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="📋 @string/view_data"
+            android:text="@string/view_data"
             android:textSize="16sp"
             android:backgroundTint="#2196F3"
             android:layout_marginBottom="12dp" />
@@ -299,7 +299,7 @@
             android:id="@+id/buttonOpenFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📄 @string/open_csv"
+            android:text="@string/open_csv"
             android:backgroundTint="#757575"
             android:layout_marginBottom="8dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
@@ -308,7 +308,7 @@
             android:id="@+id/buttonClearData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🗑️ @string/clear_data"
+            android:text="@string/clear_data"
             android:backgroundTint="#F44336"
             android:layout_marginBottom="24dp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
@@ -318,7 +318,7 @@
             android:id="@+id/buttonUpgradePro"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="🌟 @string/upgrade_pro"
+            android:text="@string/upgrade_pro"
             android:textSize="16sp"
             android:backgroundTint="#FFD700"
             android:textColor="#212121"
