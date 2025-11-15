@@ -139,4 +139,6 @@
     <string name="transactions">ครั้ง</string>
     <string name="filter">กรอง</string>
     <string name="to">ถึง</string>
+    <string name="item_name">ชื่อรายการ</string>
+    <string name="item_name_label">รายการ:</string>
 </resources>

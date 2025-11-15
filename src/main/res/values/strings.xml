@@ -139,4 +139,6 @@
     <string name="transactions">transactions</string>
     <string name="filter">Filter</string>
     <string name="to">to</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_name_label">Item:</string>
 </resources>

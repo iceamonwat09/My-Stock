@@ -117,7 +117,7 @@ class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<L
 
     class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val textProductName: TextView = view.findViewById(R.id.textProductName)
-        val textCategory: TextView = view.findViewById(R.id.textCategory)
+        val textItemName: TextView = view.findViewById(R.id.textItemName)
         val textStockLevel: TextView = view.findViewById(R.id.textStockLevel)
     }
 
@@ -129,11 +129,13 @@ class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<L
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        val context = holder.itemView.context
+
         holder.textProductName.text = item.productName
-        holder.textCategory.text = if (item.category.isNotEmpty()) {
-            "หมวดหมู่: ${item.category}"
+        holder.textItemName.text = if (item.category.isNotEmpty()) {
+            "${context.getString(R.string.item_name_label)} ${item.category}"
         } else {
-            "หมวดหมู่: ไม่ระบุ"
+            context.getString(R.string.item_name)
         }
         holder.textStockLevel.text = "${item.currentStock} / ${item.minStock}"
     }
