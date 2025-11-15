@@ -43,8 +43,22 @@ class StockInActivity : BaseActivity() {
     private lateinit var imagePreview: ImageView
     private lateinit var textProductCount: TextView
 
+    // New views for improved UI
+    private lateinit var cardProductInfo: View
+    private lateinit var textInfoCurrentStock: TextView
+    private lateinit var textInfoCategory: TextView
+    private lateinit var textInfoLocation: TextView
+    private lateinit var textInfoPrice: TextView
+    private lateinit var textInfoMinStock: TextView
+    private lateinit var containerCategoryLocation: View
+    private lateinit var containerPriceMinStock: View
+    private lateinit var layoutQuantity: com.google.android.material.textfield.TextInputLayout
+    private lateinit var cardStockCalculation: View
+    private lateinit var textStockCalculation: TextView
+
     private var selectedProduct: Product? = null
     private var currentImagePath: String = ""
+    private var quantityWatcher: TextWatcher? = null
 
     // QR Scanner launcher
     private val qrScannerLauncher = registerForActivityResult(
@@ -126,6 +140,19 @@ class StockInActivity : BaseActivity() {
         imagePreview = findViewById(R.id.imagePreview)
         textProductCount = findViewById(R.id.textViewProductCount)
 
+        // Initialize new views
+        cardProductInfo = findViewById(R.id.cardProductInfo)
+        textInfoCurrentStock = findViewById(R.id.textInfoCurrentStock)
+        textInfoCategory = findViewById(R.id.textInfoCategory)
+        textInfoLocation = findViewById(R.id.textInfoLocation)
+        textInfoPrice = findViewById(R.id.textInfoPrice)
+        textInfoMinStock = findViewById(R.id.textInfoMinStock)
+        containerCategoryLocation = findViewById(R.id.containerCategoryLocation)
+        containerPriceMinStock = findViewById(R.id.containerPriceMinStock)
+        layoutQuantity = findViewById(R.id.layoutQuantity)
+        cardStockCalculation = findViewById(R.id.cardStockCalculation)
+        textStockCalculation = findViewById(R.id.textStockCalculation)
+
         autoCompleteProduct.requestFocus()
     }
 
@@ -149,8 +176,8 @@ class StockInActivity : BaseActivity() {
                 val text = s.toString()
                 val product = ProductManager.findProduct(productsFile, text)
                 if (product != null) {
-                    selectedProduct = product
-                    showCurrentStock(product)
+                    // Load full product data including all fields
+                    loadProductData(text)
                 } else {
                     selectedProduct = null
                     hideCurrentStock()
@@ -163,16 +190,23 @@ class StockInActivity : BaseActivity() {
         val product = ProductManager.findProduct(productsFile, productName)
         if (product != null) {
             selectedProduct = product
-            editTextCategory.setText(product.category)
-            editTextLocation.setText(product.location)
-            editTextPrice.setText(product.pricePerUnit.toString())
-            editTextMinStock.setText(product.minStock.toString())
 
-            // Lock fields for existing products - only allow quantity changes
-            editTextCategory.isEnabled = false
-            editTextLocation.isEnabled = false
-            editTextPrice.isEnabled = false
-            editTextMinStock.isEnabled = false
+            // Show product info in card instead of fields
+            textInfoCurrentStock.text = "${product.currentStock} ${getString(R.string.units)}"
+            textInfoCategory.text = product.category
+            textInfoLocation.text = product.location
+            textInfoPrice.text = "${getString(R.string.baht)}${String.format("%.2f", product.pricePerUnit)}"
+            textInfoMinStock.text = "${product.minStock} ${getString(R.string.units)}"
+
+            // Hide input fields for existing products
+            containerCategoryLocation.visibility = View.GONE
+            containerPriceMinStock.visibility = View.GONE
+
+            // Change quantity label to "Quantity to Add"
+            layoutQuantity.hint = getString(R.string.quantity_to_add)
+
+            // Setup quantity watcher for calculation
+            setupQuantityWatcher()
 
             if (product.imagePath.isNotEmpty() && File(product.imagePath).exists()) {
                 currentImagePath = product.imagePath
@@ -185,24 +219,63 @@ class StockInActivity : BaseActivity() {
     }
 
     private fun showCurrentStock(product: Product) {
-        layoutCurrentStock.visibility = View.VISIBLE
-        val stockText = "${getString(R.string.current_stock)}: ${product.currentStock}"
-        textCurrentStock.text = stockText
+        // Hide old card, show new card
+        layoutCurrentStock.visibility = View.GONE
+        cardProductInfo.visibility = View.VISIBLE
 
+        // Update stock text with color
+        textInfoCurrentStock.text = "${product.currentStock} ${getString(R.string.units)}"
         if (product.isLowStock()) {
-            textCurrentStock.setTextColor(getColor(android.R.color.holo_red_dark))
+            textInfoCurrentStock.setTextColor(getColor(android.R.color.holo_red_dark))
         } else {
-            textCurrentStock.setTextColor(getColor(android.R.color.holo_green_dark))
+            textInfoCurrentStock.setTextColor(getColor(android.R.color.holo_green_dark))
         }
     }
 
     private fun hideCurrentStock() {
         layoutCurrentStock.visibility = View.GONE
-        // Enable fields for new products
-        editTextCategory.isEnabled = true
-        editTextLocation.isEnabled = true
-        editTextPrice.isEnabled = true
-        editTextMinStock.isEnabled = true
+        cardProductInfo.visibility = View.GONE
+        cardStockCalculation.visibility = View.GONE
+
+        // Show input fields for new products
+        containerCategoryLocation.visibility = View.VISIBLE
+        containerPriceMinStock.visibility = View.VISIBLE
+
+        // Reset quantity label to default
+        layoutQuantity.hint = getString(R.string.quantity)
+
+        // Remove quantity watcher if exists
+        quantityWatcher?.let { editTextQuantity.removeTextChangedListener(it) }
+    }
+
+    private fun setupQuantityWatcher() {
+        // Remove previous watcher if exists
+        quantityWatcher?.let { editTextQuantity.removeTextChangedListener(it) }
+
+        quantityWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val product = selectedProduct ?: return
+                val quantityStr = s.toString()
+
+                if (quantityStr.isNotEmpty()) {
+                    val quantity = quantityStr.toIntOrNull() ?: 0
+                    if (quantity > 0) {
+                        val newStock = product.currentStock + quantity
+                        val calculationText = "${product.currentStock} + $quantity = $newStock"
+                        textStockCalculation.text = calculationText
+                        cardStockCalculation.visibility = View.VISIBLE
+                    } else {
+                        cardStockCalculation.visibility = View.GONE
+                    }
+                } else {
+                    cardStockCalculation.visibility = View.GONE
+                }
+            }
+        }
+
+        editTextQuantity.addTextChangedListener(quantityWatcher)
     }
 
     private fun setupButtonListeners() {
@@ -330,11 +403,6 @@ class StockInActivity : BaseActivity() {
         imagePreview.visibility = View.GONE
         selectedProduct = null
         hideCurrentStock()
-        // Re-enable all fields
-        editTextCategory.isEnabled = true
-        editTextLocation.isEnabled = true
-        editTextPrice.isEnabled = true
-        editTextMinStock.isEnabled = true
         autoCompleteProduct.requestFocus()
     }
 

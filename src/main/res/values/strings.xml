@@ -103,6 +103,10 @@
     <string name="total_products">Total Products</string>
     <string name="products">Products</string>
     <string name="min_stock_helper">Alert when stock is below or equal to this value</string>
+    <string name="current_product_info">Current Product Information</string>
+    <string name="quantity_to_add">Quantity to Add</string>
+    <string name="new_stock_will_be">New Stock Will Be</string>
+    <string name="units">units</string>
 
     <!-- Stock Out Activity -->
     <string name="confirm_stock_out">Confirm Stock Out</string>
