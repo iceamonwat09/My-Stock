@@ -53,7 +53,7 @@ class CsvRowAdapterNew(
         // Set text fields
         holder.textDateTime.text = row.dateTime
         holder.textProductName.text = row.productName
-        holder.textCategory.text = if (row.category.isEmpty()) "Uncategorized" else row.category
+        holder.textCategory.text = if (row.category.isEmpty()) holder.itemView.context.getString(R.string.unspecified_item) else row.category
         holder.textLocation.text = "📍 ${row.location}"
         holder.textQuantity.text = "Qty: ${row.quantity}"
 

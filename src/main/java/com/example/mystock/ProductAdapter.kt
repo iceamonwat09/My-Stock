@@ -56,7 +56,7 @@ class ProductAdapter(
 
         // Set text fields
         holder.textProductName.text = product.productName
-        holder.textCategory.text = if (product.category.isEmpty()) "ไม่มีหมวดหมู่" else product.category
+        holder.textCategory.text = if (product.category.isEmpty()) holder.itemView.context.getString(R.string.unspecified_item) else product.category
         holder.textLocation.text = "📍 ${product.location}"
 
         // Current Stock - with color coding

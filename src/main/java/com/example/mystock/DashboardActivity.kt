@@ -161,7 +161,8 @@ class CategoryAdapter(private val categories: List<CategorySummary>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val category = categories[position]
-        holder.textCategory.text = category.category.ifEmpty { "Uncategorized" }
+        val context = holder.itemView.context
+        holder.textCategory.text = category.category.ifEmpty { context.getString(R.string.unspecified_item) }
         holder.textItems.text = "${category.itemCount} items"
         holder.textQuantity.text = "Qty: ${category.totalQuantity}"
 

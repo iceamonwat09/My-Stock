@@ -105,12 +105,12 @@
                     android:background="#E0E0E0"
                     android:layout_marginBottom="12dp" />
 
-                <!-- Category -->
+                <!-- Item -->
                 <TextView
                     android:id="@+id/textCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Category: Electronics"
+                    android:text="Item: Electronics"
                     android:textSize="14sp"
                     android:textColor="#616161"
                     android:layout_marginBottom="6dp" />

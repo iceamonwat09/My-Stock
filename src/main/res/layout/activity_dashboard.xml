@@ -210,11 +210,11 @@
                 android:padding="8dp" />
         </androidx.cardview.widget.CardView>
 
-        <!-- Category Summary Section -->
+        <!-- Item Summary Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📊 Stock by Category"
+            android:text="@string/stock_by_category"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="#2196F3"

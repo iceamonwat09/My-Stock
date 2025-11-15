@@ -11,7 +11,7 @@
     <string name="saved_rows">บันทึกแล้ว: %1$d / %2$d รายการ</string>
     <string name="saved_rows_unlimited">บันทึกแล้ว: %1$d รายการ (ไม่จำกัด)</string>
     <string name="product_name">ชื่อสินค้า</string>
-    <string name="category">หมวดหมู่</string>
+    <string name="category">รายการ</string>
     <string name="location">สถานที่</string>
     <string name="quantity">จำนวน</string>
     <string name="price">ราคาต่อหน่วย</string>
@@ -34,12 +34,12 @@
     <string name="total_stock_value">มูลค่าสต๊อกรวม</string>
     <string name="low_stock_items">สินค้าใกล้หมด</string>
     <string name="recent_transactions">รายการล่าสุด</string>
-    <string name="stock_by_category">สต๊อกตามหมวดหมู่</string>
+    <string name="stock_by_category">สต๊อกตามรายการ</string>
     <string name="value_trend">แนวโน้มมูลค่า</string>
 
     <!-- View Data Activity -->
     <string name="search">ค้นหา</string>
-    <string name="filter_category">กรองตามหมวดหมู่</string>
+    <string name="filter_category">กรองตามรายการ</string>
     <string name="filter_location">กรองตามสถานที่</string>
     <string name="start_date">วันที่เริ่มต้น</string>
     <string name="end_date">วันที่สิ้นสุด</string>
@@ -141,4 +141,5 @@
     <string name="to">ถึง</string>
     <string name="item_name">ชื่อรายการ</string>
     <string name="item_name_label">รายการ:</string>
+    <string name="unspecified_item">ไม่ระบุ</string>
 </resources>
