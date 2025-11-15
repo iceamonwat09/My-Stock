@@ -185,23 +185,22 @@ class ReportFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var textEmpty: TextView
-    private lateinit var transactionType: TransactionType
-    private var transactions: List<Transaction> = emptyList()
 
     companion object {
         private const val ARG_TYPE = "type"
-        private const val ARG_TRANSACTIONS = "transactions"
 
         fun newInstance(type: TransactionType, transactions: List<Transaction>): ReportFragment {
             val fragment = ReportFragment()
-            val args = Bundle()
-            args.putString(ARG_TYPE, type.name)
-            // Convert transactions to array for Bundle
+            // Store data in Activity instead of Fragment to avoid lifecycle issues
             fragment.transactionType = type
             fragment.transactions = transactions
             return fragment
         }
     }
+
+    // Store data as properties (will be set before fragment is attached)
+    var transactionType: TransactionType = TransactionType.IN
+    var transactions: List<Transaction> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater,

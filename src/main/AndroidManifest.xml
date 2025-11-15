@@ -108,6 +108,13 @@
             android:exported="false"
             tools:ignore="LockedOrientationActivity" />
 
+        <!-- Stock Report Activity -->
+        <activity
+            android:name=".StockReportActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
+
         <!-- FileProvider for CSV sharing -->
         <provider
             android:name="androidx.core.content.FileProvider"
