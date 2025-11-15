@@ -117,4 +117,18 @@
     <string name="stock_out_success">เบิกสินค้าออกสำเร็จ! สต๊อกเหลือ:</string>
     <string name="quantity_to_withdraw">จำนวนที่ต้องการเบิก</string>
     <string name="product_image">รูปภาพสินค้า</string>
+
+    <!-- In/Out Report -->
+    <string name="in_out_report">รายงาน In/Out</string>
+    <string name="report_title">รายงานความเคลื่อนไหวสต๊อก</string>
+    <string name="select_date">เลือกวันที่</string>
+    <string name="today">วันนี้</string>
+    <string name="qty_in">จำนวนเข้า</string>
+    <string name="qty_out">จำนวนออก</string>
+    <string name="value_in">มูลค่าเข้า</string>
+    <string name="value_out">มูลค่าออก</string>
+    <string name="total_in">รวมเข้า</string>
+    <string name="total_out">รวมออก</string>
+    <string name="no_data">ไม่มีข้อมูลในวันที่เลือก</string>
+    <string name="view_report">ดูรายงาน</string>
 </resources>

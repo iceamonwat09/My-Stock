@@ -246,6 +246,15 @@
             android:layout_marginBottom="8dp" />
 
         <Button
+            android:id="@+id/buttonInOutReport"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/view_report"
+            android:textSize="16sp"
+            android:backgroundTint="#FF9800"
+            android:layout_marginBottom="8dp" />
+
+        <Button
             android:id="@+id/buttonRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

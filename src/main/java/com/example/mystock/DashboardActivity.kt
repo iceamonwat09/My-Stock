@@ -56,6 +56,10 @@ class DashboardActivity : BaseActivity() {
             startActivity(Intent(this, ViewDataActivityInventory::class.java))
         }
 
+        findViewById<Button>(R.id.buttonInOutReport).setOnClickListener {
+            startActivity(Intent(this, InOutReportActivity::class.java))
+        }
+
         findViewById<Button>(R.id.buttonRefresh).setOnClickListener {
             loadDashboard()
         }
@@ -113,6 +117,7 @@ class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<L
 
     class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val textProductName: TextView = view.findViewById(R.id.textProductName)
+        val textCategory: TextView = view.findViewById(R.id.textCategory)
         val textStockLevel: TextView = view.findViewById(R.id.textStockLevel)
     }
 
@@ -125,6 +130,15 @@ class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<L
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.textProductName.text = item.productName
+
+        // Display category
+        val categoryText = if (item.category.isNotEmpty()) {
+            item.category
+        } else {
+            holder.itemView.context.getString(R.string.all)
+        }
+        holder.textCategory.text = "${holder.itemView.context.getString(R.string.category)}: $categoryText"
+
         holder.textStockLevel.text = "${item.currentStock} / ${item.minStock}"
     }
 

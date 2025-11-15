@@ -117,4 +117,18 @@
     <string name="stock_out_success">Stock Out successful! Remaining stock:</string>
     <string name="quantity_to_withdraw">Quantity to Withdraw</string>
     <string name="product_image">Product Image</string>
+
+    <!-- In/Out Report -->
+    <string name="in_out_report">In/Out Report</string>
+    <string name="report_title">Stock Movement Report</string>
+    <string name="select_date">Select Date</string>
+    <string name="today">Today</string>
+    <string name="qty_in">Qty IN</string>
+    <string name="qty_out">Qty OUT</string>
+    <string name="value_in">Value IN</string>
+    <string name="value_out">Value OUT</string>
+    <string name="total_in">Total IN</string>
+    <string name="total_out">Total OUT</string>
+    <string name="no_data">No data for selected date</string>
+    <string name="view_report">View Report</string>
 </resources>
