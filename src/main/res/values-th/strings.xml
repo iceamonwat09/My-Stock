@@ -121,4 +121,22 @@
     <string name="stock_out_success">เบิกสินค้าออกสำเร็จ! สต๊อกเหลือ:</string>
     <string name="quantity_to_withdraw">จำนวนที่ต้องการเบิก</string>
     <string name="product_image">รูปภาพสินค้า</string>
+
+    <!-- Stock Report Activity -->
+    <string name="stock_report">รายงานสินค้า</string>
+    <string name="view_report">ดูรายงาน</string>
+    <string name="date_range">ช่วงวันที่</string>
+    <string name="total_stock_in">รับเข้าทั้งหมด</string>
+    <string name="total_stock_out">เบิกออกทั้งหมด</string>
+    <string name="tab_stock_in">รับเข้า</string>
+    <string name="tab_stock_out">เบิกออก</string>
+    <string name="received">รับเข้า %d ครั้ง</string>
+    <string name="withdrawn">เบิกออก %d ครั้ง</string>
+    <string name="total_quantity">จำนวนรวม</string>
+    <string name="total_amount">มูลค่ารวม</string>
+    <string name="no_transactions">ไม่มีรายการในช่วงเวลานี้</string>
+    <string name="items">รายการ</string>
+    <string name="transactions">ครั้ง</string>
+    <string name="filter">กรอง</string>
+    <string name="to">ถึง</string>
 </resources>

@@ -52,6 +52,10 @@ class DashboardActivity : BaseActivity() {
             finish()
         }
 
+        findViewById<Button>(R.id.buttonViewReport).setOnClickListener {
+            startActivity(Intent(this, StockReportActivity::class.java))
+        }
+
         findViewById<Button>(R.id.buttonViewAllData).setOnClickListener {
             startActivity(Intent(this, ViewDataActivityInventory::class.java))
         }
@@ -113,6 +117,7 @@ class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<L
 
     class ViewHolder(view: android.view.View) : RecyclerView.ViewHolder(view) {
         val textProductName: TextView = view.findViewById(R.id.textProductName)
+        val textCategory: TextView = view.findViewById(R.id.textCategory)
         val textStockLevel: TextView = view.findViewById(R.id.textStockLevel)
     }
 
@@ -125,6 +130,11 @@ class LowStockAdapter(private val items: List<Product>) : RecyclerView.Adapter<L
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.textProductName.text = item.productName
+        holder.textCategory.text = if (item.category.isNotEmpty()) {
+            "หมวดหมู่: ${item.category}"
+        } else {
+            "หมวดหมู่: ไม่ระบุ"
+        }
         holder.textStockLevel.text = "${item.currentStock} / ${item.minStock}"
     }
 

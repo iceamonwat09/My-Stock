@@ -121,4 +121,22 @@
     <string name="stock_out_success">Stock Out successful! Remaining stock:</string>
     <string name="quantity_to_withdraw">Quantity to Withdraw</string>
     <string name="product_image">Product Image</string>
+
+    <!-- Stock Report Activity -->
+    <string name="stock_report">Stock Report</string>
+    <string name="view_report">View Report</string>
+    <string name="date_range">Date Range</string>
+    <string name="total_stock_in">Total Stock IN</string>
+    <string name="total_stock_out">Total Stock OUT</string>
+    <string name="tab_stock_in">Stock IN</string>
+    <string name="tab_stock_out">Stock OUT</string>
+    <string name="received">Received %d times</string>
+    <string name="withdrawn">Withdrawn %d times</string>
+    <string name="total_quantity">Total Qty</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="no_transactions">No transactions in this period</string>
+    <string name="items">items</string>
+    <string name="transactions">transactions</string>
+    <string name="filter">Filter</string>
+    <string name="to">to</string>
 </resources>
